@@ -13,7 +13,7 @@ describe('Tasks (e2e)', () => {
         .post('/tasks/task1')
         .send({ input })
         .expect(200)
-        .then((_) => _.body.result);
+        .then((response) => response.body.result);
 
       expect(result).toBe('');
     });
