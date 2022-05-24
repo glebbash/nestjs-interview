@@ -1,8 +1,12 @@
 import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 
-class TaskInputDto {
+interface TaskInputDto {
   input: string;
+}
+
+interface TaskResultDto {
+  result: string;
 }
 
 @Controller('tasks')
@@ -11,7 +15,9 @@ export class TasksController {
 
   @HttpCode(200)
   @Post('task1')
-  async task1(@Body() { input }: TaskInputDto) {
-    return this.service.task1(input);
+  task1(@Body() { input }: TaskInputDto): TaskResultDto {
+    const result = this.service.task1(input);
+
+    return { result };
   }
 }

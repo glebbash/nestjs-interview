@@ -7,12 +7,15 @@ describe('Tasks (e2e)', () => {
 
   describe('GET /tasks/task1', () => {
     it('should return some value', async () => {
-      const input = 'Hello world!';
+      const input = '';
 
-      const response = await request().post('/tasks/task1').send({ input });
+      const result = await request()
+        .post('/tasks/task1')
+        .send({ input })
+        .expect(200)
+        .then((_) => _.body.result);
 
-      expect(response.status).toBe(200);
-      expect(response.body).toBeDefined();
+      expect(result).toBe('');
     });
   });
 });
